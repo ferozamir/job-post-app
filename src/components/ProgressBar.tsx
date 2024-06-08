@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
         height: 24,
         borderRadius: 12,
         backgroundColor: colors.background,
-        borderWidth: 2,
-        borderColor: '#ccc',
+        borderWidth: 1,
+        borderColor: '#AFB0B6',
         justifyContent: 'center',
         alignItems: 'center',
-        position:'absolute',
+        position: 'absolute',
         zIndex: 10
     },
     completedCircle: {
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     },
     line: {
         width: '110%',
-        height: 2,
-        top:11,
-        backgroundColor: '#ccc',
+        height: 1,
+        top: 12,
+        backgroundColor: '#AFB0B6',
         // position: 'absolute',
         // bottom: 0
     },

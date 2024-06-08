@@ -12,8 +12,7 @@ const AppNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator initialRouteName="Main">
       <Stack.Screen name="Main" component={JobPostScreen} options={{ title: 'Post a Job' }} />
-      <Stack.Screen name="Preview" component={PreviewSection} options={{ title: 'Post a Job' }} />
-      <Stack.Screen name="Posted" component={PostSuccessScreen} options={{ title: '' }} />
+      <Stack.Screen name="Posted" component={PostSuccessScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   </NavigationContainer>
 );

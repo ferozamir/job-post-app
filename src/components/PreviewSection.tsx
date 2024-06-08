@@ -1,16 +1,60 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import colors from '../colors';
 import CustomText from './CustomText';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
 
-type Props = {
-    // navigation: any;
-};
 
-const PreviewSection: React.FC<Props> = () => {
+interface Props {
+    setCurrentStep: (index: number) => void
+    jobDetails: any
+}
+
+const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
+
+    const [starMarked, setStarMarked] = useState(false);
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+
+    const handlePayment = async () => {
+        const bodyData = { ...jobDetails, isFavorite: starMarked, created: Date.now() };
+
+        try {
+            const response = await fetch('http://10.0.2.2:3000/jobs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyData),
+            });
+
+            if (!response.ok) {
+                Alert.alert('Error', 'Network response was not ok', [
+                    { text: 'OK', onPress: () => console.log('OK Pressed') },
+                ]);
+                throw new Error('Network response was not ok');
+            }
+
+            setCurrentStep(0);
+            navigation.navigate('Posted');
+
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            Alert.alert('Error', 'Network error occuured', [
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ]);
+            throw new Error('Network response was not ok');
+        }
+    };
+
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity style={{ marginBottom: 10 }} onPress={() => setCurrentStep(0)}>
+                <CustomText><Icon name={'chevron-left'} style={{ fontSize: 12, color: "#95969D" }} /> Back</CustomText>
+            </TouchableOpacity>
             <CustomText style={styles.previewText}>This is a preview of what your job post will look like to job seekers.</CustomText>
             <View style={styles.card}>
                 <View style={styles.header}>
@@ -18,28 +62,32 @@ const PreviewSection: React.FC<Props> = () => {
                         <Image source={require('./../assets/PreviewInJob.png')} />
                     </View>
                     <View>
-                        <View>
-                            <>
-                                <CustomText style={styles.title}>Jr. Front-End Designer</CustomText>
-                                <CustomText style={styles.subtitle}><CustomText style={{ fontWeight: '600' }}>Kickstarter,</CustomText> in Manchester</CustomText>
-                            </>
-                            <Icon name="check" size={16} color="white" />
+                        <View style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            width: '84%',
+                        }}>
+                            <View>
+                                <CustomText style={styles.title}>{jobDetails?.title ? jobDetails?.title : 'Jr. Front-End Developer'}</CustomText>
+                                <CustomText style={styles.subtitle}><CustomText style={{ fontWeight: 'bold' }}>Kickstarter,</CustomText> in Manchester</CustomText>
+                            </View>
+                            <Icon name={starMarked ? 'star' : "star-o"} size={16} style={{ marginTop: 3 }} onPress={() => setStarMarked(!starMarked)} />
                         </View>
+                        <CustomText style={styles.timePosted}>Posted 6 hours ago</CustomText>
                         <View style={styles.tags}>
-                            <View style={styles.tag}>
-                                <CustomText style={styles.tagText}>React</CustomText>
-                            </View>
-                            <View style={styles.tag}>
-                                <CustomText style={styles.tagText}>MongoDB</CustomText>
-                            </View>
+                            {jobDetails?.skillsList?.map((skill: string, index:number) => (
+                                <View style={styles.tag} key={index}>
+                                    <CustomText style={styles.tagText}>{skill}</CustomText>
+                                </View>
+                            ))}
                         </View>
-                        {/* <CustomText style={styles.timePosted}>Posted 6 hours ago</CustomText> */}
                     </View>
                 </View>
                 <View style={styles.body}>
                     <CustomText style={styles.sectionTitle}>Job Description</CustomText>
                     <CustomText style={styles.description}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel tincidunt risus. Vestibulum commodo tincidunt interdum. Quisque porta odio eu urna maximus dapibus. Praesent ut fringilla arcu. Nam sed imperdiet diam.
+                        {jobDetails?.description ? jobDetails?.description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel tincidunt risus. Vestibulum commodo tincidunt interdum. Quisque porta odio eu urna maximus dapibus. Praesent ut fringilla arcu. Nam sed imperdiet diam.'}
                     </CustomText>
                     <CustomText style={styles.sectionTitle}>Requirements</CustomText>
                     <CustomText style={styles.description}>
@@ -48,7 +96,7 @@ const PreviewSection: React.FC<Props> = () => {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.paymentButton} onPress={()=>console.log('first')}>
+                <TouchableOpacity style={styles.paymentButton} onPress={handlePayment}>
                     <CustomText style={styles.paymentButtonText}>Payment</CustomText>
                 </TouchableOpacity>
             </View>
@@ -97,7 +145,6 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 12,
         color: '#888',
-        marginBottom: 8,
     },
     tags: {
         flexDirection: 'row',
@@ -116,6 +163,7 @@ const styles = StyleSheet.create({
     timePosted: {
         fontSize: 10,
         color: '#75788D',
+        marginBottom: 4
     },
     body: {
         marginTop: 16,
@@ -134,7 +182,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         // position: 'absolute'
-        borderTopColor: '#333',
+        borderTopColor: '#AFB0B6',
         borderTopWidth: 0.5,
         width: '109%',
         paddingHorizontal: 16,

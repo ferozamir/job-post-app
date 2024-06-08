@@ -4,8 +4,12 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import colors from '../colors';
 import CustomText from '../components/CustomText';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
 
 const PostSuccessScreen = () => {
+
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
     return (
         <View style={styles.container}>
@@ -17,11 +21,10 @@ const PostSuccessScreen = () => {
             <View style={styles.textContainer}>
                 <CustomText style={styles.title}>Your Job is Posted!</CustomText>
                 <CustomText style={styles.message}>Congratulations! Your job has been successfully posted and is now visible to potential candidates. Good luck in your recruitment process!</CustomText>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
                     <CustomText style={styles.buttonText}>Manage Jobs</CustomText>
                 </TouchableOpacity>
             </View>
-
 
         </View >
     );

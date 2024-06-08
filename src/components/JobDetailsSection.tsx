@@ -8,13 +8,14 @@ import Dropdown from './Dropdown';
 
 interface Props {
     setCurrentStep: (index: number) => void
+    setJobDetails: (details: any) => void
 }
 
-const JobDetailsSection: React.FC<Props> = ({ setCurrentStep }) => {
+const JobDetailsSection: React.FC<Props> = ({ setCurrentStep, setJobDetails }) => {
 
     const jobTypes = [{ title: 'Software Engineer' }, { title: "Frontend Developer" }, { title: 'Backend Developer' }, { title: 'Full Stack Developer' }]
     const educationList = [{ title: 'BS Computer Science' }, { title: "BS Software Engineering" }, { title: 'BS Information Technology' }, { title: 'BS Data Science' }]
-    const experienceLevelList = [{ title: 'Software Engineer' }, { title: "Frontend Developer" }, { title: 'Backend Developer' }, { title: 'Full Stack Developer' }]
+    const experienceLevelList = [{ title: '1 Year' }, { title: "2 Years" }, { title: '3 Years' }, { title: '4 Years+' }]
 
     const [jobTitle, setJobTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -30,6 +31,18 @@ const JobDetailsSection: React.FC<Props> = ({ setCurrentStep }) => {
             setSkills('');
         }
     };
+
+    const handleGetStarted = () => {
+        setJobDetails({
+            title: jobTitle,
+            description: description,
+            skillsList: skillsList,
+            jobType: jobType,
+            education: education,
+            experienceLevel: experienceLevel,
+        });
+        setCurrentStep(2);
+    }
 
     return (
         <View style={styles.container}>
@@ -101,7 +114,7 @@ const JobDetailsSection: React.FC<Props> = ({ setCurrentStep }) => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => setCurrentStep(2)}>
+                <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
                     <CustomText style={styles.buttonText}>Get Started</CustomText>
                 </TouchableOpacity>
             </View>
@@ -118,7 +131,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         marginVertical: 8,
-        color: '#040607'
+        color: '#040607',
+        fontFamily: 'Poppins-Regular'
     },
     input: {
         marginBottom: 16,
@@ -170,13 +184,14 @@ const styles = StyleSheet.create({
     },
     chip: {
         margin: 4,
+        backgroundColor: '#CFFCE6'
     },
     buttonContainer: {
-        borderTopColor: '#333',
+        borderTopColor: '#AFB0B6',
         borderTopWidth: 0.5,
-        width: '109%',
+        width: '110%',
         paddingHorizontal: 16,
-        marginLeft: -16,
+        marginLeft: -18,
         marginTop: 20
     },
     button: {
