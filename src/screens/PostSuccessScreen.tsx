@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
     },
     successImage: {
-        width: 140,
+        width: 128,
         height: 230,
         resizeMode: 'contain',
         margin: 'auto'
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#fff',
         textAlign: 'center',
-        marginVertical: 10,
+        marginVertical: 8,
         opacity: 0.8,
         fontWeight: '400',
         fontFamily: 'Poppins-Regular'
@@ -70,13 +70,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingVertical: 16,
         marginHorizontal: 'auto',
-        marginTop: 20,
+        marginTop: 24,
     },
     buttonText: {
         color: colors.primary,
         textAlign: 'center',
         fontWeight: '500',
-        fontFamily: 'Poppins-Regular',
         fontSize: 16
     }
 })

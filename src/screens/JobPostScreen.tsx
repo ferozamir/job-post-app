@@ -21,9 +21,8 @@ const JobPostScreen: React.FC<Props> = ({ navigation }) => {
     <ScrollView >
       <ProgressBar steps={steps} currentStep={currentStep} />
 
-      {/* <JobDetailsSection /> */}
-
-      <PreviewSection navigation={navigation} />
+      {currentStep === 0 && (<JobDetailsSection setCurrentStep={setCurrentStep} />)}
+      {currentStep === 2 && (<PreviewSection />)}
 
     </ScrollView >
   );

@@ -2,11 +2,19 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Button, Chip, HelperText } from 'react-native-paper';
-import ProgressBar from '../components/ProgressBar';
 import colors from '../colors';
 import CustomText from './CustomText';
+import Dropdown from './Dropdown';
 
-const JobDetailsSection = () => {
+interface Props {
+    setCurrentStep: (index: number) => void
+}
+
+const JobDetailsSection: React.FC<Props> = ({ setCurrentStep }) => {
+
+    const jobTypes = [{ title: 'Software Engineer' }, { title: "Frontend Developer" }, { title: 'Backend Developer' }, { title: 'Full Stack Developer' }]
+    const educationList = [{ title: 'BS Computer Science' }, { title: "BS Software Engineering" }, { title: 'BS Information Technology' }, { title: 'BS Data Science' }]
+    const experienceLevelList = [{ title: 'Software Engineer' }, { title: "Frontend Developer" }, { title: 'Backend Developer' }, { title: 'Full Stack Developer' }]
 
     const [jobTitle, setJobTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -57,10 +65,11 @@ const JobDetailsSection = () => {
                     onChangeText={text => setSkills(text)}
                 />
                 <TouchableOpacity style={styles.addButton} onPress={addSkill}>
-                    <CustomText style={{color: '#fff', fontSize: 26, fontWeight: 300}}>+</CustomText>
+                    <Text style={{ color: '#fff', fontSize: 26, fontWeight: 300 }}>+</Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.skillsChips}>
+
+            <View style={[styles.skillsChips, skillsList?.length > 0 && { marginVertical: 8 }]}>
                 {skillsList.map((skill, index) => (
                     <Chip
                         key={index}
@@ -73,33 +82,26 @@ const JobDetailsSection = () => {
             </View>
 
             <CustomText style={styles.sectionTitle}>Job Type</CustomText>
-            <TextInput
-                style={styles.input}
-                placeholder="Select job type"
-                placeholderTextColor="#ADAEAE"
-                value={jobType}
-                onChangeText={text => setJobType(text)}
-            />
+
+            <View style={styles.dropdownContainer}>
+                <Dropdown data={jobTypes} placeholder='Select Job Type' onSelect={(selectedItem, index) => setJobType(selectedItem.title)} />
+            </View>
 
             <CustomText style={styles.sectionTitle}>Education</CustomText>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter job title"
-                placeholderTextColor="#ADAEAE"
-                value={education}
-                onChangeText={text => setEducation(text)}
-            />
+
+            <View style={styles.dropdownContainer}>
+                <Dropdown data={educationList} placeholder='Select Education' onSelect={(selectedItem, index) => setEducation(selectedItem.title)} />
+            </View>
+
 
             <CustomText style={styles.sectionTitle}>Experience Level</CustomText>
-            <TextInput
-                style={styles.input}
-                placeholder="Select job type"
-                placeholderTextColor="#ADAEAE"
-                value={experienceLevel}
-                onChangeText={text => setExperienceLevel(text)}
-            />
+
+            <View style={styles.dropdownContainer}>
+                <Dropdown data={experienceLevelList} placeholder='Select Experience Level' onSelect={(selectedItem, index) => setExperienceLevel(selectedItem.title)} />
+            </View>
+
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => console.log('Get Started')}>
+                <TouchableOpacity style={styles.button} onPress={() => setCurrentStep(2)}>
                     <CustomText style={styles.buttonText}>Get Started</CustomText>
                 </TouchableOpacity>
             </View>
@@ -113,26 +115,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     sectionTitle: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
         marginVertical: 8,
+        color: '#040607'
     },
     input: {
         marginBottom: 16,
         backgroundColor: colors.background,
         paddingHorizontal: 14,
         borderRadius: 8,
+        fontSize: 14,
+        fontFamily: 'Poppins-Regular'
     },
     textArea: {
         height: 307,
         textAlignVertical: 'top',
-        paddingVertical: 16
+        paddingVertical: 16,
+        fontSize: 14,
+        fontFamily: 'Poppins-Regular'
     },
     descLength: {
         color: '#ADAEAE',
         position: 'absolute',
         bottom: 26,
-        right: 4
+        right: 4,
+        fontSize: 12,
+        letterSpacing: -0.2
     },
     skillsContainer: {
         flexDirection: 'row',
@@ -141,10 +150,11 @@ const styles = StyleSheet.create({
     },
     skillInput: {
         width: '100%',
-        marginBottom: 16,
+        marginBottom: 0,
         backgroundColor: colors.background,
         paddingHorizontal: 14,
-        borderRadius: 8
+        borderRadius: 8,
+        fontFamily: 'Poppins-Regular'
     },
     addButton: {
         position: 'absolute',
@@ -157,7 +167,6 @@ const styles = StyleSheet.create({
     skillsChips: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginVertical: 8,
     },
     chip: {
         margin: 4,
@@ -167,7 +176,8 @@ const styles = StyleSheet.create({
         borderTopWidth: 0.5,
         width: '109%',
         paddingHorizontal: 16,
-        marginLeft: -16
+        marginLeft: -16,
+        marginTop: 20
     },
     button: {
         backgroundColor: colors.primary,
@@ -181,6 +191,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
     },
+    dropdownContainer: {
+        marginBottom: 10
+    }
+
 });
 
 export default JobDetailsSection

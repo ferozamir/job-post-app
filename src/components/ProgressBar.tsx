@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     stepLabel: {
         marginTop: 28,
         color: '#95969D',
-        fontSize: 13,
+        fontSize: 10,
         position: 'absolute',
         top: 0,
     },

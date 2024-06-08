@@ -1,23 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import colors from '../colors';
 import CustomText from './CustomText';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 
 type Props = {
-    navigation: any;
+    // navigation: any;
 };
 
-const PreviewSection: React.FC<Props> = ({ navigation }) => {
+const PreviewSection: React.FC<Props> = () => {
     return (
         <View style={styles.container}>
             <CustomText style={styles.previewText}>This is a preview of what your job post will look like to job seekers.</CustomText>
             <View style={styles.card}>
                 <View style={styles.header}>
-                    <View style={styles.icon}></View>
+                    <View style={styles.icon}>
+                        <Image source={require('./../assets/PreviewInJob.png')} />
+                    </View>
                     <View>
-                        <CustomText style={styles.title}>Jr. Front-End Designer</CustomText>
-                        <CustomText style={styles.subtitle}><CustomText style={{ fontWeight: 600 }}>Kickstarter,</CustomText> in Manchester</CustomText>
+                        <View>
+                            <>
+                                <CustomText style={styles.title}>Jr. Front-End Designer</CustomText>
+                                <CustomText style={styles.subtitle}><CustomText style={{ fontWeight: '600' }}>Kickstarter,</CustomText> in Manchester</CustomText>
+                            </>
+                            <Icon name="check" size={16} color="white" />
+                        </View>
                         <View style={styles.tags}>
                             <View style={styles.tag}>
                                 <CustomText style={styles.tagText}>React</CustomText>
@@ -26,7 +33,7 @@ const PreviewSection: React.FC<Props> = ({ navigation }) => {
                                 <CustomText style={styles.tagText}>MongoDB</CustomText>
                             </View>
                         </View>
-                        <CustomText style={styles.timePosted}>Posted 6 hours ago</CustomText>
+                        {/* <CustomText style={styles.timePosted}>Posted 6 hours ago</CustomText> */}
                     </View>
                 </View>
                 <View style={styles.body}>
@@ -41,7 +48,7 @@ const PreviewSection: React.FC<Props> = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.paymentButton} onPress={navigation.navigate('Posted')}>
+                <TouchableOpacity style={styles.paymentButton} onPress={()=>console.log('first')}>
                     <CustomText style={styles.paymentButtonText}>Payment</CustomText>
                 </TouchableOpacity>
             </View>
@@ -58,6 +65,9 @@ const styles = StyleSheet.create({
     },
     previewText: {
         marginBottom: 20,
+        fontSize: 13,
+        fontWeight: '400',
+        fontFamily: 'Poppins-Regular',
         padding: 3,
         textAlign: 'justify'
     },
@@ -74,19 +84,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     icon: {
-        width: 50,
-        height: 50,
+        justifyContent: 'flex-start',
         backgroundColor: '#FF6F61',
         borderRadius: 8,
         marginRight: 16,
     },
     title: {
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 14,
+        fontWeight: '500',
         color: '#222741'
     },
     subtitle: {
-        fontSize: 14,
+        fontSize: 12,
         color: '#888',
         marginBottom: 8,
     },
@@ -97,30 +106,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#E0F7FA',
         borderRadius: 4,
         paddingHorizontal: 8,
-        paddingVertical: 4,
+        paddingVertical: 2,
         marginRight: 8,
     },
     tagText: {
-        fontSize: 12,
+        fontSize: 10,
         color: '#62636A',
     },
     timePosted: {
-        fontSize: 12,
-        color: '#888',
+        fontSize: 10,
+        color: '#75788D',
     },
     body: {
         marginTop: 16,
     },
     sectionTitle: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
         marginBottom: 8,
         color: '#222741'
     },
     description: {
-        fontSize: 14,
+        fontSize: 12,
         color: '#75788D',
         marginBottom: 16,
+        lineHeight: 18
     },
     buttonContainer: {
         // position: 'absolute'
