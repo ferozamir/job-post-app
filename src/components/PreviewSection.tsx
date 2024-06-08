@@ -59,7 +59,7 @@ const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
             <View style={styles.card}>
                 <View style={styles.header}>
                     <View style={styles.icon}>
-                        <Image source={require('./../assets/PreviewInJob.png')} />
+                        <Image source={require('./../assets/images/PreviewInJob.png')} />
                     </View>
                     <View>
                         <View style={{

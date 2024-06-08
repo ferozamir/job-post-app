@@ -33,6 +33,20 @@
       "experienceLevel": "4 Years+",
       "isFavorite": false,
       "created": 1717832828357
+    },
+    {
+      "id": "ddac",
+      "title": "DevOps Engineer",
+      "description": "DevOps Engineer with AWS Experience",
+      "skillsList": [
+        "AWS",
+        "Azure"
+      ],
+      "jobType": "Software Engineer",
+      "education": "BS Software Engineering",
+      "experienceLevel": "2 Years",
+      "isFavorite": false,
+      "created": 1717833475257
     }
   ]
 }

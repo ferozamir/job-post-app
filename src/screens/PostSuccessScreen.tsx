@@ -15,7 +15,7 @@ const PostSuccessScreen = () => {
         <View style={styles.container}>
 
             <View style={styles.successImageContainer}>
-                <Image source={require('../assets/SuccessIcon.png')} style={styles.successImage} />
+                <Image source={require('../assets/images/SuccessIcon.png')} style={styles.successImage} />
             </View>
 
             <View style={styles.textContainer}>
