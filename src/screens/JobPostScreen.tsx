@@ -5,16 +5,25 @@ import { Button, Chip, HelperText } from 'react-native-paper';
 import ProgressBar from '../components/ProgressBar';
 import colors from '../colors';
 import JobDetailsSection from '../components/JobDetailsSection';
+import PreviewSection from '../components/PreviewSection';
 
 
-const JobPostScreen = () => {
+type Props = {
+  navigation: any;
+};
+
+const JobPostScreen: React.FC<Props> = ({ navigation }) => {
 
   const steps = ['Job Detail', 'Post Detail', 'Preview', 'Payment'];
+  const [currentStep, setCurrentStep] = useState(0);
+
   return (
     <ScrollView >
-      <ProgressBar steps={steps} currentStep={2} />
+      <ProgressBar steps={steps} currentStep={currentStep} />
 
-      <JobDetailsSection />
+      {/* <JobDetailsSection /> */}
+
+      <PreviewSection navigation={navigation} />
 
     </ScrollView >
   );

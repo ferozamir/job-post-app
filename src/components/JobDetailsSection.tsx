@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Button, Chip, HelperText } from 'react-native-paper';
 import ProgressBar from '../components/ProgressBar';
 import colors from '../colors';
+import CustomText from './CustomText';
 
 const JobDetailsSection = () => {
 
@@ -14,17 +15,17 @@ const JobDetailsSection = () => {
     const [education, setEducation] = useState('');
     const [experienceLevel, setExperienceLevel] = useState('');
     const [skillsList, setSkillsList] = useState<string[]>([]);
-  
+
     const addSkill = () => {
-      if (skills.trim()) {
-        setSkillsList([...skillsList, skills.trim()]);
-        setSkills('');
-      }
+        if (skills.trim()) {
+            setSkillsList([...skillsList, skills.trim()]);
+            setSkills('');
+        }
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.sectionTitle}>Job Title</Text>
+            <CustomText style={styles.sectionTitle}>Job Title</CustomText>
             <TextInput
                 style={styles.input}
                 placeholder="Enter job title"
@@ -33,7 +34,7 @@ const JobDetailsSection = () => {
                 onChangeText={text => setJobTitle(text)}
             />
 
-            <Text style={styles.sectionTitle}>Description</Text>
+            <CustomText style={styles.sectionTitle}>Description</CustomText>
             <View>
                 <TextInput
                     style={[styles.input, styles.textArea]}
@@ -46,7 +47,7 @@ const JobDetailsSection = () => {
                 />
                 <HelperText type="info" style={styles.descLength}>{`${description.length}/1500`}</HelperText>
             </View>
-            <Text style={styles.sectionTitle}>Skills</Text>
+            <CustomText style={styles.sectionTitle}>Skills</CustomText>
             <View style={styles.skillsContainer}>
                 <TextInput
                     style={styles.skillInput}
@@ -55,9 +56,9 @@ const JobDetailsSection = () => {
                     value={skills}
                     onChangeText={text => setSkills(text)}
                 />
-                <Button mode="contained" style={styles.addButton} onPress={addSkill}>
-                    +
-                </Button>
+                <TouchableOpacity style={styles.addButton} onPress={addSkill}>
+                    <CustomText style={{color: '#fff', fontSize: 26, fontWeight: 300}}>+</CustomText>
+                </TouchableOpacity>
             </View>
             <View style={styles.skillsChips}>
                 {skillsList.map((skill, index) => (
@@ -71,7 +72,7 @@ const JobDetailsSection = () => {
                 ))}
             </View>
 
-            <Text style={styles.sectionTitle}>Job Type</Text>
+            <CustomText style={styles.sectionTitle}>Job Type</CustomText>
             <TextInput
                 style={styles.input}
                 placeholder="Select job type"
@@ -80,7 +81,7 @@ const JobDetailsSection = () => {
                 onChangeText={text => setJobType(text)}
             />
 
-            <Text style={styles.sectionTitle}>Education</Text>
+            <CustomText style={styles.sectionTitle}>Education</CustomText>
             <TextInput
                 style={styles.input}
                 placeholder="Enter job title"
@@ -89,7 +90,7 @@ const JobDetailsSection = () => {
                 onChangeText={text => setEducation(text)}
             />
 
-            <Text style={styles.sectionTitle}>Experience Level</Text>
+            <CustomText style={styles.sectionTitle}>Experience Level</CustomText>
             <TextInput
                 style={styles.input}
                 placeholder="Select job type"
@@ -98,9 +99,9 @@ const JobDetailsSection = () => {
                 onChangeText={text => setExperienceLevel(text)}
             />
             <View style={styles.buttonContainer}>
-                <Button mode="contained" style={styles.button} onPress={() => console.log('Get Started')}>
-                    Get Started
-                </Button>
+                <TouchableOpacity style={styles.button} onPress={() => console.log('Get Started')}>
+                    <CustomText style={styles.buttonText}>Get Started</CustomText>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -147,11 +148,11 @@ const styles = StyleSheet.create({
     },
     addButton: {
         position: 'absolute',
-        fontSize: 30,
         backgroundColor: colors.primary,
+        paddingHorizontal: 10,
         borderRadius: 8,
-        right: 6,
-        top: 4
+        right: 7,
+        top: 6
     },
     skillsChips: {
         flexDirection: 'row',
@@ -163,19 +164,22 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         borderTopColor: '#333',
-        borderTopWidth: 1,
+        borderTopWidth: 0.5,
         width: '109%',
         paddingHorizontal: 16,
         marginLeft: -16
     },
     button: {
-        marginTop: 24,
         backgroundColor: colors.primary,
+        padding: 16,
         borderRadius: 8,
+        alignItems: 'center',
+        marginTop: 16
+    },
+    buttonText: {
         fontSize: 16,
-        fontWeight: 500,
-        height: 56,
-        textAlignVertical: 'center'
+        color: '#fff',
+        fontWeight: 'bold',
     },
 });
 

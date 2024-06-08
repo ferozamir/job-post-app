@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import colors from '../colors';
 
 import Icon from 'react-native-vector-icons/AntDesign';
+import CustomText from './CustomText';
 
 type ProgressBarProps = {
     steps: string[];
@@ -22,7 +23,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps, currentStep }) => {
                             <View style={[styles.circle, isCompleted && styles.completedCircle, isActive && styles.activeCircle]}>
                                 {isCompleted && <Icon name="check" size={16} color="white" />}
                             </View>
-                            <Text numberOfLines={1} style={[styles.stepLabel, isCompleted && styles.completedLabel, isActive && styles.activeLabel]}>{step}</Text>
+                            <CustomText numberOfLines={1} style={[styles.stepLabel, isCompleted && styles.completedLabel, isActive && styles.activeLabel]}>{step}</CustomText>
                         </View>
                         {index < steps.length - 1 && (
                             <View style={styles.lineContainer}>
