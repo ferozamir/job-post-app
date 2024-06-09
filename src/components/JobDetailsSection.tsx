@@ -149,10 +149,9 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         fontSize: 14,
-        fontWeight: 'bold',
         marginVertical: 8,
         color: '#040607',
-        fontFamily: 'Poppins-Regular'
+        fontFamily: 'Poppins-Bold'
     },
     input: {
         marginBottom: 16,
@@ -224,7 +223,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         color: '#fff',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold'
     },
     dropdownContainer: {
         marginBottom: 10

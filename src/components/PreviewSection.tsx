@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     paymentButtonText: {
         fontSize: 16,
         color: '#fff',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold'
     },
 });
 

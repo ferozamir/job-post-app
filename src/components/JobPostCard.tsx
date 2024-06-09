@@ -62,7 +62,7 @@ const JobPostCard: React.FC<JobPostCardProps> = ({ jobDetails }) => {
                     }}>
                         <View>
                             <CustomText style={styles.title}>{jobDetails?.title ? jobDetails?.title : 'Jr. Front-End Developer'}</CustomText>
-                            <CustomText style={styles.subtitle}><CustomText style={{ fontWeight: 'bold' }}>Kickstarter,</CustomText> in Manchester</CustomText>
+                            <CustomText style={styles.subtitle}><CustomText style={{ fontFamily: 'Poppins-Bold' }}>Kickstarter,</CustomText> in Manchester</CustomText>
                         </View>
                         <Icon name={starMarked ? 'star' : "star-o"} size={16} style={{ marginTop: 3 }} onPress={() => setStarMarked(!starMarked)} />
                     </View>
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         fontSize: 14,
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
         marginBottom: 8,
         color: '#222741'
     },
