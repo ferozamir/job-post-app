@@ -1,79 +1,89 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# JobPostApp
 
-# Getting Started
+JobPostApp is a React Native application that allows users to post job listings and preview them. This app is built using React Native CLI, TypeScript, and several other libraries for smooth UI and navigation.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Table of Contents
 
-## Step 1: Start the Metro Server
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+- [Project Structure](#project-structure)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Requirements
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Node.js v20.14.0
+- npm v10.7.0
+- React Native CLI v2.0.1
+- React Native 0.74.2 (Recommended)
+- Android Studio (for Android development)
+- Xcode (for iOS development)
 
-```bash
-# using npm
-npm start
+## Installation
 
-# OR using Yarn
-yarn start
-```
+1. **Clone the repository:**
 
-## Step 2: Start your Application
+    ```sh
+    git clone https://github.com/ferozamir/job-post-app.git
+    cd JobPostApp
+    ```
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+2. **Install dependencies:**
 
-### For Android
+    ```sh
+    npm install
+    ```
 
-```bash
-# using npm
-npm run android
+3. **Link native dependencies:**
 
-# OR using Yarn
-yarn android
-```
+    ```sh
+    npx react-native link (if required)
+    ```
 
-### For iOS
+## Running the App
 
-```bash
-# using npm
-npm run ios
+### Android
 
-# OR using Yarn
-yarn ios
-```
+1. **Start the Android emulator:**
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+    Open Android Studio and start an emulator or connect a physical device.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+2. **Run the app:**
 
-## Step 3: Modifying your App
+    ```sh
+    npm run android
+    ```
 
-Now that you have successfully run the app, let's modify it.
+### iOS
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+1. **Install pods:**
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+    ```sh
+    1. cd ios
+    2. pod install
+    2. cd ..
+    ```
 
-## Congratulations! :tada:
+2. **Run the app:**
 
-You've successfully run and modified your React Native App. :partying_face:
+    ```sh
+    npm run ios
+    ```
 
-### Now what?
+## Project Structure
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+The project's structure is as follows:
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+JobPostApp/
+├── android/ # Native Android code
+├── ios/ # Native iOS code
+├── src/ # Source files
+│ ├── components/ # Reusable components
+│ ├── screens/ # Screen components
+│ ├── navigation/ # Navigation setup
+│ ├── assets/ # Assets (images, fonts, etc.)
+├ ├── App.tsx # Entry point of the app
+├ ├── colors.ts # Global Colors for app
+├── package.json # Project dependencies
+├── tsconfig.json # TypeScript configuration
+├── react-native.config.js # Link Fonts to App
+└── README.md # Project documentation

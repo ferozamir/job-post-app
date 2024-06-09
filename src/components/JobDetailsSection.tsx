@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Button, Chip, HelperText } from 'react-native-paper';
 import colors from '../colors';
@@ -13,7 +13,7 @@ interface Props {
 
 const JobDetailsSection: React.FC<Props> = ({ setCurrentStep, setJobDetails }) => {
 
-    const jobTypes = [{ title: 'Software Engineer' }, { title: "Frontend Developer" }, { title: 'Backend Developer' }, { title: 'Full Stack Developer' }]
+    const jobTypes = [{ title: 'Full-Time' }, { title: "Part-Time" }, { title: 'Contract' }]
     const educationList = [{ title: 'BS Computer Science' }, { title: "BS Software Engineering" }, { title: 'BS Information Technology' }, { title: 'BS Data Science' }]
     const experienceLevelList = [{ title: '1 Year' }, { title: "2 Years" }, { title: '3 Years' }, { title: '4 Years+' }]
 
@@ -43,6 +43,15 @@ const JobDetailsSection: React.FC<Props> = ({ setCurrentStep, setJobDetails }) =
         });
         setCurrentStep(2);
     }
+
+    useEffect(() => {
+        // For this project I didn't find any need to use the use Effect Hook. 
+        // Because No Data Retrieval Required on Component Load
+
+        return () => {
+            // Used while unmounting component 
+        }
+    }, [])
 
     return (
         <View style={styles.container}>
