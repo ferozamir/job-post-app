@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput, ScrollView, Text, TouchableOpacity, Alert } from 'react-native';
 import { Button, Chip, HelperText } from 'react-native-paper';
 import colors from '../colors';
 import CustomText from './CustomText';
@@ -33,6 +33,17 @@ const JobDetailsSection: React.FC<Props> = ({ setCurrentStep, setJobDetails }) =
     };
 
     const handleGetStarted = () => {
+
+        if (!jobTitle) {
+            Alert.alert('Please Enter a Job Title');
+            return;
+        }
+
+        if (!description) {
+            Alert.alert('Please Enter a Job Descroption.')
+            return;
+        }
+
         setJobDetails({
             title: jobTitle,
             description: description,

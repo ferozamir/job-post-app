@@ -21,7 +21,7 @@ const PostSuccessScreen = () => {
             <View style={styles.textContainer}>
                 <CustomText style={styles.title}>Your Job is Posted!</CustomText>
                 <CustomText style={styles.message}>Congratulations! Your job has been successfully posted and is now visible to potential candidates. Good luck in your recruitment process!</CustomText>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Jobs')}>
                     <CustomText style={styles.buttonText}>Manage Jobs</CustomText>
                 </TouchableOpacity>
             </View>
