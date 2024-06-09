@@ -1,4 +1,4 @@
-// Dropdown.tsx
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, Dimensions } from 'react-native';
 import colors from '../colors';
 import CustomText from './CustomText';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,10 +17,28 @@ const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
     const [starMarked, setStarMarked] = useState(false);
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
+    const [isLandscape, setIsLandscape] = useState(false);
+
+    useEffect(() => {
+        const updateOrientation = () => {
+            const { width, height } = Dimensions.get('window');
+            console.log('first')
+            setIsLandscape(width > height);
+        };
+
+        updateOrientation();
+        
+        let dimensionsHandler;
+        dimensionsHandler = Dimensions.addEventListener('change', updateOrientation);
+
+        return () => {
+            dimensionsHandler.remove();
+        };
+    }, []);
 
     const handlePayment = async () => {
 
-        const API_URL= `http://10.0.2.2:3000/jobs`; // You can replace your own API_URL to Test
+        const API_URL = `http://10.0.2.2:3000/jobs`; // You can replace your own API_URL to Test
 
         const bodyData = {
             ...jobDetails,
@@ -103,7 +121,7 @@ const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.paymentButton} onPress={handlePayment}>
+                <TouchableOpacity style={[styles.paymentButton, isLandscape && {width: '96%', marginHorizontal: 'auto'}]} onPress={handlePayment}>
                     <CustomText style={styles.paymentButtonText}>Payment</CustomText>
                 </TouchableOpacity>
             </View>
@@ -200,7 +218,8 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 8,
         alignItems: 'center',
-        marginTop: 16
+        marginTop: 16,
+        marginHorizontal: 'auto'
     },
     paymentButtonText: {
         fontSize: 16,
