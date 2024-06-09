@@ -19,10 +19,17 @@ const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
 
 
     const handlePayment = async () => {
-        const bodyData = { ...jobDetails, isFavorite: starMarked, created: Date.now() };
+
+        const API_URL= `http://10.0.2.2:3000/jobs`; // You can replace your own API_URL to Test
+
+        const bodyData = {
+            ...jobDetails,
+            isFavorite: starMarked,
+            created: Date.now()
+        };
 
         try {
-            const response = await fetch('http://10.0.2.2:3000/jobs', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +83,7 @@ const PreviewSection: React.FC<Props> = ({ setCurrentStep, jobDetails }) => {
                         </View>
                         <CustomText style={styles.timePosted}>Posted 6 hours ago</CustomText>
                         <View style={styles.tags}>
-                            {jobDetails?.skillsList?.map((skill: string, index:number) => (
+                            {jobDetails?.skillsList?.map((skill: string, index: number) => (
                                 <View style={styles.tag} key={index}>
                                     <CustomText style={styles.tagText}>{skill}</CustomText>
                                 </View>

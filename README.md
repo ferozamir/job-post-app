@@ -36,7 +36,8 @@ JobPostApp is a React Native application that allows users to post job listings 
 3. **Link native dependencies:**
 
     ```sh
-    npx react-native link (if required)
+    npx react-native link 
+    <!-- (if required) -->
     ```
 
 ## Running the App
@@ -73,17 +74,20 @@ JobPostApp is a React Native application that allows users to post job listings 
 
 The project's structure is as follows:
 
+
+
 JobPostApp/
-├── android/ # Native Android code
-├── ios/ # Native iOS code
-├── src/ # Source files
-│ ├── components/ # Reusable components
-│ ├── screens/ # Screen components
-│ ├── navigation/ # Navigation setup
-│ ├── assets/ # Assets (images, fonts, etc.)
-├ ├── App.tsx # Entry point of the app
-├ ├── colors.ts # Global Colors for app
-├── package.json # Project dependencies
-├── tsconfig.json # TypeScript configuration
-├── react-native.config.js # Link Fonts to App
-└── README.md # Project documentation
+
+- android/ # Native Android code
+- ios/ # Native iOS code
+- src/ # Source files
+- - components/ # Reusable components
+- - screens/ # Screen components
+- - navigation/ # Navigation setup
+- - assets/ # Assets (images, fonts, etc.)
+- - App.tsx # Entry point of the app
+- - colors.ts # Global Colors for app
+- package.json # Project dependencies
+- tsconfig.json # TypeScript configuration
+- react-native.config.js # Link Fonts to App
+- README.md # Project documentation
